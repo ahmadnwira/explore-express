@@ -1,0 +1,10 @@
+<%- include('partials/header', {page: page}); %>
+
+    <form action="/posts" method="post">
+        <input type="text" name="title" placeholder="title">
+        <br>
+        <textarea name="content" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit" value="save">
+    </form>
+<%- include('partials/footer', {page: page}); %>

@@ -1,0 +1,9 @@
+<%- include('partials/header', {page: page}); %>
+
+    <h1> Home</h1>
+    <ul>
+        <% data.forEach(function(element){ %>
+            <li><%= element.title %></li>
+        <% }); %>
+    </ul>
+<%- include('partials/footer', {page: page}); %>
