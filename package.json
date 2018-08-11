@@ -2,16 +2,17 @@
   "name": "explore-express",
   "version": "1.0.0",
   "description": "exploring express",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon server.js"
   },
   "author": "Ahmed Salah",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
+    "eslint": "^5.3.0",
     "express": "^4.16.3",
     "mongodb": "^3.1.1"
   },
