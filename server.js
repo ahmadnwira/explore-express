@@ -1,40 +1,35 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
-const data = [{
-    title: 'post-title',
-    content: 'lorem ipsum ...'
-}, {
-    title: 'post-title-again',
-    content: 'lorem ipsum ...'
-}];
-
-const mongoClient = require('mongodb').MongoClient;
+const postSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
+const Post = mongoose.model('Post', postSchema);
 
 const connectionString = 'mongodb://localhost:37017/myDB';
 
-mongoClient.connect(connectionString, (error, db) => {
-    if (error) {
-        console.log("didn't connect");
-    };
+mongoose.connect(connectionString);
 
-    const dbo = db.db("myDB");
+const post = new Post({
+    title: 'post-title',
+    content: 'lorem ...'
+});
 
-    const posts = dbo.collection('posts'); // creates collection
-    posts.insert(data, (err, res) => {
-        if (err) {
-            console.log(err);
-        }
-    });
+post.save((err, savedDoc, affected) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log(affected);
+    console.log(savedDoc);
+});
 
-    dbo.collection('posts').find({}, (err, docs) => {
-        docs.forEach(doc => {
-            console.log(`Title => ${doc.title}, Content => ${doc.content}`);
-        });
-    });
-
-    db.close();
+Post.find({}, (err, posts)=>{
+    posts.forEach(post=> {
+        console.log(`${post.title} -- ${post.content}`);
+    })
 });
 
 app.listen(8080, () => console.log('app listening on port 8080'))
