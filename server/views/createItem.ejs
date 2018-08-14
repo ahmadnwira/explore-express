@@ -1,0 +1,15 @@
+<form action="<%= url %>" method="post" style="width: 400px; margin-left:20%">
+    <fieldset>
+        <legend>New Item:</legend>
+        <label for="name">item name</label>
+        <input type="text" id="name" name="name"
+            value="<%if (typeof item  == 'object'){ %> <%= item.name %> <% }%>" />
+        <br>
+
+        <label for="name">item price</label>
+        <input type="text" id="price" name="price"
+        value="<%if (typeof item == 'object') { %> <%= item.price %> <% }%>" />
+        <br>
+        <input type="submit" value="save">
+    </fieldset>
+</form>

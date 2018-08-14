@@ -1,0 +1,21 @@
+const http = require('http');
+const mongoose = require('mongoose');
+
+const App = require('../server');
+const config = require('../config');
+
+const log = config.logger;
+
+mongoose.connect(config.mongodb.url)
+  .then(
+    () => { log.info('Successfully connected to MongoDb'); }
+    , (err) => { /* rejected */ }
+  );
+
+const app = App(config);
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+const server = http.createServer(app);
+
+server.listen(port, () => {log.info(`server listening on port ${port}`)});
